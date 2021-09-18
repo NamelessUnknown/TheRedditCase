@@ -5,6 +5,7 @@ import { FooterComponent } from './footer/footer.component';
 import { FeedListComponent } from './feed-list/feed-list.component';
 import { FeedDetailsComponent } from './feed-details/feed-details.component';
 import { FeedTeaserComponent } from './feed-teaser/feed-teaser.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -15,7 +16,7 @@ import { FeedTeaserComponent } from './feed-teaser/feed-teaser.component';
     FeedDetailsComponent,
     FeedTeaserComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, HttpClientModule],
   exports: [
     NavBarComponent,
     FooterComponent,
