@@ -6,4 +6,5 @@ export interface IPost {
   score: string;
   title: string;
   selftext: string;
+  thumbnail: string;
 }

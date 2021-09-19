@@ -1,5 +1,5 @@
 <div class="container">
-        <button [disabled]="before === ''" (click)="onPageChange($event)" value="before">BEFORE</button>
+        <button [disabled]="fromStartCounter == 0" (click)="onPageChange($event)" value="before">BEFORE</button>
         <button [disabled]="!after" (click)="onPageChange($event)" value="after">AFTER</button>
         <select class="form-select" (change)="onPostAmountChange($event)" >
             <option value="5">5</option>

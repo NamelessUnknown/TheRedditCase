@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { IPost } from 'src/app/shared/models/IPost';
 
 @Component({
   selector: 'app-feed-details',
   templateUrl: './feed-details.component.html',
-  styleUrls: ['./feed-details.component.scss']
+  styleUrls: ['./feed-details.component.scss'],
 })
 export class FeedDetailsComponent implements OnInit {
+  @Input() post!: IPost;
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
