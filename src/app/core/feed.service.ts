@@ -22,19 +22,15 @@ export class FeedService {
      let params = new HttpParams();
      console.log(this.feedParams)
      params = params.append('limit', this.feedParams.postsLimit)
-     if(this.feedParams.after.length > 0)
-     {
-       params = params.append('after', this.feedParams.after)
+     if(this.feedParams.dir) {
+       params = params.append(this.feedParams.dir, this.feedParams.dirVal)
      }
-      if (this.feedParams.before.length > 0) {
-        params = params.append('before', this.feedParams.before);
-      }
 
     return this.http.get<any>(this.baseUrl, { observe: 'response', params }).pipe(
       map((response) => {
-        console.log(response.body.data.children)
         const fetchedPosts = response.body.data.children;
-        this.posts = fetchedPosts.slice(0, this.feedParams.postsLimit).map(
+        console.log(fetchedPosts);
+        this.posts = fetchedPosts.map(
           (child: any) =>
             ({
               id: child.data.id,
@@ -46,21 +42,16 @@ export class FeedService {
               selftext: child.data.selftext,
             } as IPost)
         );
-        if(response.body.data.before != null)
-        {
-          this.pagination.before = response.body.data.before
-        }
-        else
-        {
-          this.pagination.after = response.body.data.after;
-        }
 
         this.pagination.posts = this.posts;
+        this.pagination.before = response.body.data.before;
+        this.pagination.after = response.body.data.after;
         console.log(this.pagination)
         return this.pagination;
       })
     );
   }
+
 
   getFeedParams(): FeedParams {
     return this.feedParams;
@@ -69,36 +60,4 @@ export class FeedService {
   setFeedParams(params: FeedParams) {
     this.feedParams = params;
   }
-
-  findIndex() {
-    
-  }
-
-  // getFeed() {
-  //   return this.http.get<any>(this.baseUrl, { observe: 'response' }).pipe(
-  //     map((response) => {
-  //       this.posts = [...this.posts, response.body.data];
-  //     })
-  //   );
-
-  //   // return this.http.get<any>(this.baseUrl).subscribe(res => {
-  //   //   console.log('PRZED OBRÓBOM: ', res.data.children[0].data.created);
-
-  //   //   let siema = res.data.children.map(
-  //   //     (feed: any) =>
-  //   //       ({
-  //   //         id: feed.id,
-  //   //         created: feed.created,
-  //   //         num_comments: feed.num_comments,
-  //   //         author: feed.author,
-  //   //         score: feed.score,
-  //   //         title: feed.title,
-  //   //         selftext: feed.selftext,
-  //   //       } as IFeed)
-  //   //   );
-  //   //   console.log('DUPSKO: ', siema);
-
-  //   //   console.log('FEEDY: ', this.feed)
-  //   // })
-  // }
 }

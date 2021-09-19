@@ -22,31 +22,31 @@ export class FeedListComponent implements OnInit {
   getPosts() {
     this.feedService.getFeed().subscribe((response) => {
       this.posts = response.posts;
-      this.before = response.before;
-      this.after = response.after;
+      this.before = 't3_' + response.posts[0].id;
+      this.after = 't3_' + response.posts[response.posts.length - 1].id;
     });
   }
 
-  onFeedSizeChange(size: number) {
+  onPageChange(e: any) {
+    console.log(e.target.value);
     const feedParams = this.feedService.getFeedParams();
-    feedParams.pageNumber = size;
+    if (e.target.value === 'before') {
+      feedParams.dir = 'before';
+      feedParams.dirVal = this.before;
+    } else {
+      feedParams.dir = 'after';
+      feedParams.dirVal = this.after;
+    }
     this.feedService.setFeedParams(feedParams);
     this.getPosts();
   }
 
-  onBeforePageChange() {
+  onPostAmountChange(e:any) {
+    console.log(e.target.value);
     const feedParams = this.feedService.getFeedParams();
-    feedParams.before = this.before;
+    feedParams.postsLimit = e.target.value;
+    console.log(feedParams.postsLimit)
     this.feedService.setFeedParams(feedParams);
-
-    this.getPosts();
-  }
-
-  onAfterPageChange() {
-    const feedParams = this.feedService.getFeedParams();
-    feedParams.after = this.after;
-    this.feedService.setFeedParams(feedParams);
-
     this.getPosts();
   }
 }
