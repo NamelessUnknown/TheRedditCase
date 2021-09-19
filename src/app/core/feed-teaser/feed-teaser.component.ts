@@ -13,4 +13,8 @@ export class FeedTeaserComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  cachePost(post:IPost) {
+    localStorage.setItem('post', JSON.stringify(post));
+  }
+
 }

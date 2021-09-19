@@ -5,7 +5,7 @@ import { FeedDetailsComponent } from './core/feed-details/feed-details.component
 
 const routes: Routes = [
   { path: '', component: FeedListComponent },
-  { path: 'products/:id', component: FeedDetailsComponent },
+  { path: 'posts/:id', component: FeedDetailsComponent },
   { path: '**', redirectTo: '', pathMatch: 'full'}
 ];
 
