@@ -9,6 +9,7 @@ import { IPost } from 'src/app/shared/models/IPost';
 })
 export class FeedListComponent implements OnInit {
   posts: IPost[] = [];
+  loading: boolean = false;
   before: string = '';
   after: string = '';
   fromStartCounter: number = 0;
@@ -20,33 +21,42 @@ export class FeedListComponent implements OnInit {
   }
 
   getPosts() {
+    this.loading = true;
     this.feedService.getFeed().subscribe((response) => {
       if (response.posts.length < 1) {
         this.before = '';
+        this.loading = false;
         return;
       }
       this.posts = response.posts;
       this.before = 't3_' + response.posts[0].id;
       this.after = 't3_' + response.posts[response.posts.length - 1].id;
+      this.loading = false;
     });
   }
 
   onPageChange(event: any) {
+    this.loading = true;
     const feedParams = this.feedService.getFeedParams();
     if (event.target.value === 'before') {
       feedParams.dir = 'before';
       feedParams.dirVal = this.before;
       this.fromStartCounter--;
+      this.loading = false;
     } else {
       feedParams.dir = 'after';
       feedParams.dirVal = this.after;
       this.fromStartCounter++;
+      this.loading = false;
     }
     this.feedService.setFeedParams(feedParams);
     this.getPosts();
+    window.scroll(0, 0);
+    
   }
 
   onPostAmountChange(event: any) {
+    this.loading = true;
     const feedParams = this.feedService.getFeedParams();
     feedParams.postsLimit = event.target.value;
     this.feedService.setFeedParams(feedParams);

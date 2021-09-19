@@ -1,13 +1,32 @@
 <div class="container">
-        <button [disabled]="fromStartCounter == 0" (click)="onPageChange($event)" value="before">BEFORE</button>
-        <button [disabled]="!after" (click)="onPageChange($event)" value="after">AFTER</button>
-        <select class="form-select" (change)="onPostAmountChange($event)" >
-            <option value="5">5</option>
-            <option value="10" selected>10</option>
-            <option value="25" >25</option>
-        </select>
+
     <div *ngFor="let post of posts">
-        <app-feed-teaser [post] = post></app-feed-teaser>
+        <app-feed-teaser [post]=post></app-feed-teaser>
     </div>
 
+        <div class="row">
+            <div class="col-6"></div>
+            <div class="col-3 float-right">
+                <div class="input-group mb-3 ">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text">Posts per page</label>
+                    </div>
+                    <select class="custom-select" (change)="onPostAmountChange($event)">
+                        <option value="5">5</option>
+                        <option value="10" selected>10</option>
+                        <option value="25">25</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-3">
+                <button class="btn btn-dark ml-3 float-right" [disabled]="!after" (click)="onPageChange($event)"
+                    value="after">NEXT</button>
+                <button class="btn btn-dark float-right" [disabled]="fromStartCounter == 0" (click)="onPageChange($event)"
+                    value="before">PREVIOUS</button>
+            </div>
+        </div>
 </div>
+
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" >
+</ngx-loading>

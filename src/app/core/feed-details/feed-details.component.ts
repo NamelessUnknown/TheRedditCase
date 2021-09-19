@@ -1,5 +1,7 @@
+import { FeedService } from './../feed.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { IPost } from 'src/app/shared/models/IPost';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-feed-details',
@@ -7,8 +9,15 @@ import { IPost } from 'src/app/shared/models/IPost';
   styleUrls: ['./feed-details.component.scss'],
 })
 export class FeedDetailsComponent implements OnInit {
-  @Input() post!: IPost;
-  constructor() {}
+  post!: IPost;
+  constructor(private feedService: FeedService, private activatedRoute: ActivatedRoute,) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    //this.post = history.state; - works, but 1st time: after refreshing, post is no longer available
+    const storedPost = localStorage.getItem('post')
+    if (storedPost != null) {
+      this.post = JSON.parse(storedPost);
+    }
+  }
+
 }
