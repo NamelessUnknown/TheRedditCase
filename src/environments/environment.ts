@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://www.reddit.com/r/sweden.json',
+  apiUrl: 'https://www.reddit.com/r/synthwave.json',
 };
 
 /*

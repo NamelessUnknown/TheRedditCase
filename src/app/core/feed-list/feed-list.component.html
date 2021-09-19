@@ -1,3 +1,13 @@
 <div class="container">
-    <app-feed-teaser></app-feed-teaser>
+        <button [disabled]="before === ''" (click)="onPageChange($event)" value="before">BEFORE</button>
+        <button [disabled]="!after" (click)="onPageChange($event)" value="after">AFTER</button>
+        <select class="form-select" (change)="onPostAmountChange($event)" >
+            <option value="5">5</option>
+            <option value="10" selected>10</option>
+            <option value="25" >25</option>
+        </select>
+    <div *ngFor="let post of posts">
+        <app-feed-teaser [post] = post></app-feed-teaser>
+    </div>
+
 </div>

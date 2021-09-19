@@ -6,17 +6,16 @@
                     <img src="https://zakupyw24h.pl/63920-home_default/xziemniak-grillowy-80-15-kg.jpg.pagespeed.ic.tWI55z-Odb.jpg" alt="Placeholder photo should be here">
                 </div>
                 <div class="col-8">
-            <h1>Placeholder for title</h1>
+            <h1>{{post.title}}</h1>
             <div class="row">
-                <span class="col-3">Created</span>
-                <span class="col-3">Author</span>
-                <span class="col-3">Score</span>
-                <span class="col-3">No comments</span>
+                <span class="col-3">{{post.created | date}}</span>
+                <span class="col-3">{{post.author}}</span>
+                <span class="col-3">{{post.score}}</span>
+                <span class="col-3">{{post.num_comments}}</span>
             </div>
             <hr>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum quidem necessitatibus repellat iste autem, totam sit, libero dignissimos dolorum, maiores repudiandae corrupti minima cupiditate explicabo maxime animi minus tempora temporibus.</p>
-            <p>At the smallest breakpoint, the collapse plugin is used to hide the links and show a menu button to
-                toggle the collapsed content.</p>
+            <p>{{post.selftext | slice:0:30}}</p>
             <p>
                 <a class="btn btn-primary float-right" routerLink='' role="button">Read more »</a>
             </p>

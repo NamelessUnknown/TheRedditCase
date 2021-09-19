@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { IPost } from 'src/app/shared/models/IPost';
 
 @Component({
   selector: 'app-feed-teaser',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./feed-teaser.component.scss']
 })
 export class FeedTeaserComponent implements OnInit {
-
+  @Input() post!: IPost;
   constructor() { }
 
   ngOnInit(): void {
