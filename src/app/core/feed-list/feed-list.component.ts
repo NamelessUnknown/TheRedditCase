@@ -1,4 +1,3 @@
-import { FeedParams } from './../../shared/models/FeedParams';
 import { FeedService } from './../feed.service';
 import { Component, OnInit } from '@angular/core';
 import { IPost } from 'src/app/shared/models/IPost';
@@ -12,6 +11,7 @@ export class FeedListComponent implements OnInit {
   posts: IPost[] = [];
   before: string = '';
   after: string = '';
+  fromStartCounter: number = 0;
 
   constructor(private feedService: FeedService) {}
 
@@ -21,31 +21,34 @@ export class FeedListComponent implements OnInit {
 
   getPosts() {
     this.feedService.getFeed().subscribe((response) => {
+      if (response.posts.length < 1) {
+        this.before = '';
+        return;
+      }
       this.posts = response.posts;
       this.before = 't3_' + response.posts[0].id;
       this.after = 't3_' + response.posts[response.posts.length - 1].id;
     });
   }
 
-  onPageChange(e: any) {
-    console.log(e.target.value);
+  onPageChange(event: any) {
     const feedParams = this.feedService.getFeedParams();
-    if (e.target.value === 'before') {
+    if (event.target.value === 'before') {
       feedParams.dir = 'before';
       feedParams.dirVal = this.before;
+      this.fromStartCounter--;
     } else {
       feedParams.dir = 'after';
       feedParams.dirVal = this.after;
+      this.fromStartCounter++;
     }
     this.feedService.setFeedParams(feedParams);
     this.getPosts();
   }
 
-  onPostAmountChange(e:any) {
-    console.log(e.target.value);
+  onPostAmountChange(event: any) {
     const feedParams = this.feedService.getFeedParams();
-    feedParams.postsLimit = e.target.value;
-    console.log(feedParams.postsLimit)
+    feedParams.postsLimit = event.target.value;
     this.feedService.setFeedParams(feedParams);
     this.getPosts();
   }
