@@ -1,4 +1,33 @@
-img {
-    width: 300px;
+.card-wrap {
+	max-width: 960px;
+	margin: 0 auto;
+}
+
+.card {
+	box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.5);
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	border-radius: 0;
+}
+
+.card-img-top {
+	width: 300px;	
+	background: #ccc;
+	
+	img {
+		height:100%;
+		display: block;
+		object-fit: cover;
+	}
+}
+
+.card-block-content {
+	padding: 24px;
+}
+
+.card .card-block {
+	position: relative;
+	width: calc(100% - 300px);
     height: auto;
 }

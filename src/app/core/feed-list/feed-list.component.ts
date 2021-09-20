@@ -36,18 +36,18 @@ export class FeedListComponent implements OnInit {
   }
 
   onPageChange(event: any) {
-    this.loading = true;
+
     const feedParams = this.feedService.getFeedParams();
     if (event.target.value === 'before') {
       feedParams.dir = 'before';
       feedParams.dirVal = this.before;
       this.fromStartCounter--;
-      this.loading = false;
+
     } else {
       feedParams.dir = 'after';
       feedParams.dirVal = this.after;
       this.fromStartCounter++;
-      this.loading = false;
+
     }
     this.feedService.setFeedParams(feedParams);
     this.getPosts();
@@ -56,10 +56,10 @@ export class FeedListComponent implements OnInit {
   }
 
   onPostAmountChange(event: any) {
-    this.loading = true;
     const feedParams = this.feedService.getFeedParams();
     feedParams.postsLimit = event.target.value;
     this.feedService.setFeedParams(feedParams);
     this.getPosts();
+    window.scroll(0, 0);
   }
 }
