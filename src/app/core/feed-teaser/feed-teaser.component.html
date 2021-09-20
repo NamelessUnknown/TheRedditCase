@@ -1,37 +1,43 @@
-<div class="jumbotron">
-    <div class="container">
-        <div class="row">
-            <div class="col-4">
-                <img src="{{post.thumbnail}}"
-                    alt="Placeholder photo should be here">
+<div class="mt-5">
+    <div class="card-wrap">
+        <div class='card'>
+            <div class='card-img-top'>
+                <img alt='No photo available' class='img-fluid' src='{{post.thumbnail}}'>
             </div>
-            <div class="col-8">
-                <h2 style="cursor: pointer;" routerLink="/posts/{{post.id}}" [state]="post" (click)="cachePost(post)">{{post.title | slice:0:45}}
-                </h2>
-                <div class="row ">
-                    <span class="col-3"><i class="fa fa-address-book mr-2" aria-hidden="true"></i> {{post.created |
-                        date}}</span>
-                    <span class="col-3">
-                        <i class="fa fa-user mr-2" aria-hidden="true"></i>
-                        {{post.author}}
-                    </span>
-                    <span class="col-3">
-                        <i class="fa fa-arrow-up" aria-hidden="true"></i>
-                        <i class="fa fa-arrow-down mr-2" aria-hidden="true"></i>
-                        {{post.score}}
-                    </span>
-                    <span class="col-3"><i class="fa fa-commenting-o mr-2"
-                            aria-hidden="true"></i>{{post.num_comments}}</span>
+            <div class='card-block'>
+                <div class="card-block-content">
+                    <h2 class="mb-2" style="cursor: pointer;" routerLink="/posts/{{post.id}}" [state]="post"
+                        (click)="cachePost(post)">
+                        {{post.title | slice:0:45}}
+                    </h2>
+                    <div class="row">
+                        <span class="col-3"><i class="fa fa-address-book mr-2" aria-hidden="true"></i> {{post.created |
+                            date}}</span>
+                        <span class="col-3">
+                            <i class="fa fa-user mr-2" aria-hidden="true"></i>
+                            {{post.author}}
+                        </span>
+                        <span class="col-3">
+                            <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                            <i class="fa fa-arrow-down mr-2" aria-hidden="true"></i>
+                            {{post.score}}
+                        </span>
+                        <span class="col-3"><i class="fa fa-commenting-o mr-2"
+                                aria-hidden="true"></i>{{post.num_comments}}</span>
+                    </div>
+                    <hr>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum quidem necessitatibus
+                        repellat
+                        iste autem, totam sit, libero dignissimos dolorum, maiores repudiandae corrupti minima
+                        cupiditate
+                        explicabo maxime animi minus tempora temporibus.</p>
+                    <p>{{post.selftext | slice:0:30}}</p>
+                    <p>
+                        <button routerLink="/posts/{{post.id}}" [state]="post" (click)="cachePost(post)"
+                            class="btn btn-primary float-right mb-3" routerLinkActive="router-link-active"
+                            role="button">Read more »</button>
+                    </p>
                 </div>
-                <hr>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum quidem necessitatibus repellat
-                    iste autem, totam sit, libero dignissimos dolorum, maiores repudiandae corrupti minima cupiditate
-                    explicabo maxime animi minus tempora temporibus.</p>
-                <p>{{post.selftext | slice:0:30}}</p>
-                <p>
-                    <a routerLink="/posts/{{post.id}}" [state]="post" (click)="cachePost(post)"class="btn btn-dark float-right"
-                        routerLinkActive="router-link-active" role="button">Read more »</a>
-                </p>
             </div>
         </div>
     </div>
