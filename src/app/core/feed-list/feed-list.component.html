@@ -2,7 +2,6 @@
     <div *ngFor="let post of posts">
         <app-feed-teaser [post]=post></app-feed-teaser>
     </div>
-
     <div class="row mt-5">
         <div class="col-6"></div>
         <div class="col-3 float-right">
@@ -28,4 +27,4 @@
 
 
 <ngx-loading [show]="loading"
-    [config]="{ backdropBorderRadius: '3px', backdropBackgroundColour: 'rgba(91, 139, 229, 0.44)' }"></ngx-loading>
+    [config]="{ backdropBorderRadius: '3px', backdropBackgroundColour: 'rgba(91, 139, 229, 0.44)', fullScreenBackdrop: true }"></ngx-loading>
