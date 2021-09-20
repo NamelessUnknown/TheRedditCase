@@ -1,6 +1,6 @@
 # TheRedditCase
 
-This project uses subreddit /r/subreddit.json to fetch the data and displaying the entries.
+This project uses subreddit /r/{subreddit}.json to fetch the data and displaying the entries.
 
 User can:
 - View list of posts
